@@ -1,5 +1,7 @@
 package ch.juventus.object;
 
+import java.util.Objects;
+
 public class Person {
     private final String firstName;
     private final String lastName;
@@ -15,6 +17,26 @@ public class Person {
         this.hasPet = hasPet;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public boolean isHasPet() {
+        return hasPet;
+    }
+
     @Override
     public String toString() {
         return "Person{" +
@@ -24,5 +46,18 @@ public class Person {
                 ", age=" + age +
                 ", hasPet=" + hasPet +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age && hasPet == person.hasPet && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(address, person.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(firstName, lastName, address, age, hasPet);
     }
 }

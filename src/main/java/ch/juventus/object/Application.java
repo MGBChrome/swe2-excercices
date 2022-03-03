@@ -8,6 +8,12 @@ public class Application {
                 8303,
                 "Bassersdorf"
         );
+        Address address2 = new Address(
+                "Grindelstrasse",
+                6,
+                8303,
+                "Bassersdorf"
+        );
         System.out.println(address);
 
         Person person = new Person(
@@ -17,6 +23,15 @@ public class Application {
                 18,
                 true
         );
+        Person person2 = new Person(
+                "Roman",
+                "Inglin",
+                address2,
+                18,
+                true
+        );
+
         System.out.println(person);
+        System.out.println(person.equals(person2));
     }
 }
