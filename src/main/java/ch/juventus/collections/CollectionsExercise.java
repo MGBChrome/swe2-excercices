@@ -1,13 +1,19 @@
 package ch.juventus.collections;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import ch.juventus.object.Address;
+import ch.juventus.object.Person;
+
+import java.util.*;
 
 public class CollectionsExercise {
+    private static Person person;
+    private static Person person2;
+    private static Person uniquePerson;
+    private static Person uniquePerson2;
+
     public static void main(String[] args) {
-        arrayList();
-        linkedList();
+        //arrayList();
+        //linkedList();
         hashSet();
         linkedHashSet();
         treeSet();
@@ -17,6 +23,11 @@ public class CollectionsExercise {
     }
 
     static void arrayList() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
         System.out.println();
         System.out.println("Call arrayList()");
         // TODO: Erstelle eine ArrayList von Strings und füge 5 Tiere hinzu ("Hund", "Katze", "Maus", ...)
@@ -58,6 +69,11 @@ public class CollectionsExercise {
     }
 
     static void linkedList() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
         System.out.println();
         System.out.println("Call linkedList()");
         // TODO: Erstelle eine LinkedList von Strings und füge 5 Tiere hinzu ("Hund", "Katze", "Maus", ...)
@@ -85,28 +101,134 @@ public class CollectionsExercise {
     }
 
     static void hashSet() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
         // TODO: Erstelle ein HashSet von Personen (object package)
+        Set<Person> people = new HashSet<>();
         // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
+        initializePeople(people);
+
         // TODO: Prüfe, ob das Set nicht leer ist
+        System.out.println("is Empty: " + people.isEmpty());
         // TODO: Gib die Länge des Sets aus (doppelte Personen?)
+        System.out.println("size: " + people.size());
         // TODO: Prüfe, ob ein gewisses Element im Set existiert
+        System.out.println("contains person: " + people.contains(person));
+        System.out.println("contains person2: " + people.contains(person2));
         // TODO: Lösche ein bestimmtes Element aus dem Set
+        people.remove(uniquePerson2);
         // TODO: Gib das gesamte Set mehrmals auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
+        // Antwort: Reihenfolge ist anders als beim Hinzufuegen, aber immer gleich
+        for (int i = 0; i < 10; i++)
+        {
+            System.out.println(people);
+        }
+    }
+
+    private static void printHeadLine(String methodName) {
+        System.out.println();
+        System.out.println("Call " + methodName + "()");
+    }
+
+    private static void initializePeople(Set<Person> people) {
+        initializePeopleFields();
+
+        people.add(person);
+        people.add(uniquePerson);
+        people.add(person2);
+        people.add(uniquePerson2);
     }
 
     static void linkedHashSet() {
-        // TODO: Erstelle ein LinkedHashSet von Personen (object package)
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
+        // TODO: Erstelle ein HashSet von Personen (object package)
+        Set<Person> people = new LinkedHashSet<>();
         // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
+        initializePeople(people);
+
         // TODO: Prüfe, ob das Set nicht leer ist
+        System.out.println("is Empty: " + people.isEmpty());
         // TODO: Gib die Länge des Sets aus (doppelte Personen?)
-        // TODO: Gib das gesamte Set mehrmals auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
+        lastTodos(people);
     }
 
     static void treeSet() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
         // TODO: Erstelle ein TreeSet von Personen (object package) und verwende den PersonComperator
+        PersonComparator comparator = new PersonComparator();
+        Set<Person> people = new TreeSet<>(comparator);
         // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
+        initializePeople(people);
+
+        lastTodos(people);
+    }
+
+    private static void initializePeopleFields() {
+        Address address = new Address(
+                "Grindelstrasse",
+                6,
+                8303,
+                "Bassersdorf"
+        );
+        Address address2 = new Address(
+                "Grindelstrasse",
+                6,
+                8303,
+                "Bassersdorf"
+        );
+
+        person = new Person(
+                "Roman",
+                "Inglin",
+                address,
+                18,
+                true
+        );
+        person2 = new Person(
+                "Roman",
+                "Inglin",
+                address2,
+                18,
+                true
+        );
+
+        uniquePerson = new Person(
+                "Patrick",
+                "Muellhaupt",
+                address,
+                65,
+                false
+        );
+
+        uniquePerson2 = new Person(
+                "Clemens",
+                "Duzy",
+                address,
+                65,
+                false
+        );
+    }
+
+    private static void lastTodos(Set<Person> people) {
         // TODO: Gib die Länge des Sets aus (doppelte Personen?)
+        System.out.println("size: " + people.size());
         // TODO: Gib das gesamte Set auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
+        // Antwort: Reihenfolge ist anders als beim Hinzufügen, aber immer gleich
+        for (int i = 0; i < 10; i++)
+        {
+            System.out.println(people);
+        }
     }
 
     static void hashMap() {
