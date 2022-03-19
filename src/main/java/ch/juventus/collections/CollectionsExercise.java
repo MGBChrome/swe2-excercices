@@ -128,20 +128,6 @@ public class CollectionsExercise {
         }
     }
 
-    private static void printHeadLine(String methodName) {
-        System.out.println();
-        System.out.println("Call " + methodName + "()");
-    }
-
-    private static void initializePeople(Set<Person> people) {
-        initializePeopleFields();
-
-        people.add(person);
-        people.add(uniquePerson);
-        people.add(person2);
-        people.add(uniquePerson2);
-    }
-
     static void linkedHashSet() {
         String methodName = new Object() {}
                 .getClass()
@@ -155,7 +141,7 @@ public class CollectionsExercise {
 
         // TODO: Prüfe, ob das Set nicht leer ist
         System.out.println("is Empty: " + people.isEmpty());
-        // TODO: Gib die Länge des Sets aus (doppelte Personen?)
+
         lastTodos(people);
     }
 
@@ -172,6 +158,20 @@ public class CollectionsExercise {
         initializePeople(people);
 
         lastTodos(people);
+    }
+
+    private static void printHeadLine(String methodName) {
+        System.out.println();
+        System.out.println("Call " + methodName + "()");
+    }
+
+    private static void initializePeople(Set<Person> people) {
+        initializePeopleFields();
+
+        people.add(person);
+        people.add(uniquePerson);
+        people.add(person2);
+        people.add(uniquePerson2);
     }
 
     private static void initializePeopleFields() {
