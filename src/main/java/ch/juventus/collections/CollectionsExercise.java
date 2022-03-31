@@ -12,14 +12,20 @@ public class CollectionsExercise {
     private static Person uniquePerson2;
 
     public static void main(String[] args) {
-        //arrayList();
-        //linkedList();
-        hashSet();
-        linkedHashSet();
-        treeSet();
-        hashMap();
-        linkedHashMap();
-        treeMap();
+//        arrayList();
+//        linkedList();
+//        hashSet();
+//        linkedHashSet();
+//        treeSet();
+//        hashMap();
+//        linkedHashMap();
+//        treeMap();
+
+        iterateArrayList();
+        iterateLinkedList();
+        iterateHashSet();
+        iterateLinkedHashSet();
+        iterateHashMap();
     }
 
     static void arrayList() {
@@ -28,8 +34,7 @@ public class CollectionsExercise {
                 .getEnclosingMethod()
                 .getName();
         printHeadLine(methodName);
-        System.out.println();
-        System.out.println("Call arrayList()");
+
         // TODO: Erstelle eine ArrayList von Strings und füge 5 Tiere hinzu ("Hund", "Katze", "Maus", ...)
         List<String> animals = new ArrayList<>();
         animals.add("Hunde");
@@ -74,8 +79,7 @@ public class CollectionsExercise {
                 .getEnclosingMethod()
                 .getName();
         printHeadLine(methodName);
-        System.out.println();
-        System.out.println("Call linkedList()");
+
         // TODO: Erstelle eine LinkedList von Strings und füge 5 Tiere hinzu ("Hund", "Katze", "Maus", ...)
         LinkedList<String> animals = new LinkedList<>();
         animals.add("Hunde");
@@ -106,6 +110,7 @@ public class CollectionsExercise {
                 .getEnclosingMethod()
                 .getName();
         printHeadLine(methodName);
+
         // TODO: Erstelle ein HashSet von Personen (object package)
         Set<Person> people = new HashSet<>();
         // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
@@ -134,6 +139,7 @@ public class CollectionsExercise {
                 .getEnclosingMethod()
                 .getName();
         printHeadLine(methodName);
+
         // TODO: Erstelle ein HashSet von Personen (object package)
         Set<Person> people = new LinkedHashSet<>();
         // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
@@ -146,11 +152,33 @@ public class CollectionsExercise {
     }
 
     static void treeSet() {
+        Person petra = new Person("Petra", "Merz", null, 25, true);
+        // TODO: Erstelle ein TreeSet von Personen (object package) und verwende den PersonComperator
+        Set<Person> people = new TreeSet<>(new PersonComparator());
+        // TODO: Füge mehrere Personen ein, auch doppelte (verschiedene Objekte mit gleichen Werten)
+        people.add(new Person("Hans", "Muster", null, 25, true));
+        people.add(new Person("Hans", "Muster", null, 25, true));
+        people.add(new Person("Heinz", "Mueller", null, 25, true));
+        people.add(petra);
+        people.add(new Person("Hans", "Meier", null, 25, true));
+        // TODO: Gib die Länge des Sets aus (doppelte Personen?)
+        System.out.println("size: " + people.size());
+        // TODO: Gib das gesamte Set auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
+        System.out.println(people);
+        System.out.println(people);
+        System.out.println(people);
+        System.out.println(people);
+        System.out.println(people);
+        System.out.println(people);
+    }
+
+    static void myTreeSet() {
         String methodName = new Object() {}
                 .getClass()
                 .getEnclosingMethod()
                 .getName();
         printHeadLine(methodName);
+
         // TODO: Erstelle ein TreeSet von Personen (object package) und verwende den PersonComperator
         PersonComparator comparator = new PersonComparator();
         Set<Person> people = new TreeSet<>(comparator);
@@ -160,11 +188,6 @@ public class CollectionsExercise {
         lastTodos(people);
     }
 
-    private static void printHeadLine(String methodName) {
-        System.out.println();
-        System.out.println("Call " + methodName + "()");
-    }
-
     private static void initializePeople(Set<Person> people) {
         initializePeopleFields();
 
@@ -172,6 +195,109 @@ public class CollectionsExercise {
         people.add(uniquePerson);
         people.add(person2);
         people.add(uniquePerson2);
+    }
+
+    private static void lastTodos(Set<Person> people) {
+        // TODO: Gib die Länge des Sets aus (doppelte Personen?)
+        System.out.println("size: " + people.size());
+        // TODO: Gib das gesamte Set auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
+        // Antwort: Reihenfolge ist anders als beim Hinzufügen, aber pro Ausführung immer gleich
+        for (int i = 0; i < 10; i++)
+        {
+            System.out.println(people);
+        }
+    }
+
+    static void hashMap() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
+
+        // TODO: Erstelle eine HashMap (Key: String; Value: List<Person>)
+        Map<String, List<Person>> people = new HashMap<>();
+        // TODO: Füge folgende Einträge in die Map:
+        //  ­ "family" : Liste von 3 Personen
+        //  ­ "office" : null
+        //  ­ "friends" : Liste von 3 Personen
+        initializePeopleFields();
+        List<Person> templatePeople = List.of(person, uniquePerson, uniquePerson2);
+        people.put("family", templatePeople);
+        String officeKey = "office";
+        people.put(officeKey, null);
+        people.put("friends", templatePeople);
+        // TODO: Gib die gesamte Map auf der Konsole aus
+        System.out.println("after adding: " + people);
+        // TODO: Füge einen weiteren Eintrag "office" : Liste von 2 Personen der Map hinzu.
+        //  (Wieviele Einträge sind jetzt in der Map?)
+        List<Person> samePeople = List.of(person, person2);
+        people.put(officeKey, samePeople);
+        System.out.println("size: " + people.size());
+        // TODO: Gib das entrySet auf der Konsole aus
+        Set<Map.Entry<String, List<Person>>> entrySet = people.entrySet();
+        System.out.println("entrySet: " + entrySet);
+        // TODO: Gib das keySet auf der Konsole aus
+        Set<String> keySet = people.keySet();
+        System.out.println("keySet: " + keySet);
+        // TODO: Gib die values auf der Konsole aus
+        Collection<List<Person>> values = people.values();
+        System.out.println("values: " + values);
+    }
+
+    static void linkedHashMap() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
+
+        // TODO: Erstelle eine LinkedHashMap (Key: Integer; Value: Person) mit Access-Order
+        Map<Integer, Person> people = new LinkedHashMap<>(16, .75f, true);
+        // TODO: Fülle 5 Einträge ein (auch doppelte Keys, um zu überprüfen, dass der Value überschrieben wird)
+        initializePeople(people);
+        // TODO: Gib die gesamte Map auf der Konsole aus
+        System.out.println("after adding: " + people);
+        // TODO: Greife auf mehrere Elemente zu
+        System.out.println("key 1: " + people.get(1));
+        System.out.println("after accessing key 1: " + people);
+        System.out.println("key 3: " + people.get(3));
+        System.out.println("after accessing key 3: " + people);
+        System.out.println("key 3: " + people.get(3));
+        System.out.println("after accessing key 3: " + people);
+        System.out.println("key 2: " + people.get(2));
+        // TODO: Gib die Map erneut aus und überprüfe die Sortierung
+        // TODO: Gib die gesamte Map auf der Konsole aus
+        System.out.println("after accessing the keys: " + people);
+    }
+
+    static void treeMap() {
+        String methodName = new Object() {}
+                .getClass()
+                .getEnclosingMethod()
+                .getName();
+        printHeadLine(methodName);
+
+        // TODO: Erstelle eine TreeMap (Key: Integer; Value: Person)
+        Map<Integer, Person> people = new TreeMap<>();
+        initializePeople(people);
+        // TODO: Gib die gesamte Map auf der Konsole aus und überprüfe die Sortierung
+        System.out.println("after adding: " + people);
+    }
+
+    private static void initializePeople(Map<Integer, Person> people) {
+        // TODO: Fülle 5 Einträge ein (auch doppelte Keys, um zu überprüfen, dass der Value überschrieben wird)
+        initializePeopleFields();
+        people.put(1, person);
+        people.put(3, uniquePerson);
+        people.put(2, person2);
+        people.put(1, uniquePerson);
+        people.put(4, uniquePerson2);
+    }
+
+    private static void printHeadLine(String methodName) {
+        System.out.println();
+        System.out.println("Call " + methodName + "()");
     }
 
     private static void initializePeopleFields() {
@@ -220,42 +346,77 @@ public class CollectionsExercise {
         );
     }
 
-    private static void lastTodos(Set<Person> people) {
-        // TODO: Gib die Länge des Sets aus (doppelte Personen?)
-        System.out.println("size: " + people.size());
-        // TODO: Gib das gesamte Set auf der Konsole aus. Wie ist die Reihenfolge der Elemente?
-        // Antwort: Reihenfolge ist anders als beim Hinzufügen, aber immer gleich
-        for (int i = 0; i < 10; i++)
-        {
-            System.out.println(people);
+    private static void iterateArrayList() {
+        List<String> companies = List.of("Google", "Amazon", "Facebook", "Rotronic");
+
+        printWholeCompanies("iterateArrayList()", companies);
+    }
+
+    private static void iterateLinkedList() {
+        List<String> companies = new LinkedList<>();
+        companies.add("Google");
+        companies.add("Amazon");
+        companies.add("Facebook");
+        companies.add("Rotronic");
+
+        printWholeCompanies("iterateLinkedList()", companies);
+
+        companies.removeIf(c -> c.startsWith("Go"));
+
+        printWholeCompanies("after removing", companies);
+    }
+
+    private static void iterateHashSet() {
+        Set<String> companies = Set.of("Google", "Amazon", "Facebook", "Rotronic");
+
+        printWholeCompanies("iterateHashSet()", companies);
+    }
+
+    private static void iterateLinkedHashSet() {
+        Set<String> companies = new LinkedHashSet<>();
+        companies.add("Google");
+        companies.add("Facebook");
+        companies.add("Amazon");
+        companies.add("Facebook");
+        companies.add("Rotronic");
+        companies.add("Amazon");
+
+        printWholeCompanies("iterateLinkedHashSet()", companies);
+    }
+
+    private static void printWholeCompanies(String headline, Collection<String> companies) {
+        System.out.println();
+        System.out.println(headline);
+        for (String company : companies) {
+            System.out.println(company);
         }
+
+        System.out.println();
+        System.out.println("forEach call");
+        companies.forEach(System.out::println);
     }
 
-    static void hashMap() {
-        // TODO: Erstelle eine HashMap (Key: String; Value: List<Person>)
-        // TODO: Füge folgende Einträge in die Map:
-        //  ­ "family" : Liste von 3 Personen
-        //  ­ "office" : null
-        //  ­ "friends" : Liste von 3 Personen
-        // TODO: Gib die gesamte Map auf der Konsole aus
-        // TODO: Füge einen weiteren Eintrag "office" : Liste von 2 Personen der Map hinzu.
-        //  (Wieviele Einträge sind jetzt in der Map?)
-        // TODO: Gib das entrySet auf der Konsole aus
-        // TODO: Gib das keySet auf der Konsole aus
-        // TODO: Gib die values auf der Konsole aus
-    }
+    private static void iterateHashMap() {
+        Map<Integer, String> companies = Map.of(
+                1,"Google",
+                3, "Amazon",
+                5, "Facebook",
+                9, "Rotronic"
+        );
 
-    static void linkedHashMap() {
-        // TODO: Erstelle eine LinkedHashMap (Key: Integer; Value: Person) mit Access-Order
-        // TODO: Fülle 5 Einträge ein (auch doppelte Keys, um zu überprüfen, dass der Value überschrieben wird)
-        // TODO: Gib die gesamte Map auf der Konsole aus
-        // TODO: Greife auf mehrere Elemente zu
-        // TODO: Gib die Map erneut aus und überprüfe die Sortierung
-    }
+        System.out.println();
+        System.out.println("iterateHashMap.keySet()");
+        for (Integer key : companies.keySet()) {
+            System.out.println(key);
+        }
 
-    static void treeMap() {
-        // TODO: Erstelle eine TreeMap (Key: Integer; Value: Person)
-        // TODO: Fülle 5 Einträge ein (auch doppelte Keys, um zu überprüfen, dass der Value überschrieben wird)
-        // TODO: Gib die gesamte Map auf der Konsole aus und überprüfe die Sortierung
+        printWholeCompanies("iterateHashMap.values()", companies.values());
+
+        System.out.println();
+        System.out.println("iterateHashMap.entrySet()");
+        for (Map.Entry<Integer, String> entry : companies.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+            System.out.println(entry);
+        }
     }
 }
