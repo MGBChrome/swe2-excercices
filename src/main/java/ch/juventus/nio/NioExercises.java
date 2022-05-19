@@ -8,16 +8,13 @@ public class NioExercises {
     private final String fileName = "NewTextFile.txt";
     private final String renamedFileName = "RenamedTextFile.txt";
 
-    public Path createDirectory() {
+    public void createDirectory() {
         Path directoryPath = Paths.get(basePath);
-        Path result = null;
         try {
-            result = Files.createDirectories(directoryPath);
+            Files.createDirectories(directoryPath);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return result;
     }
 
     public void createFile() throws IOException {
