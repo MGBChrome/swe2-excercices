@@ -9,18 +9,21 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class XmlPersonSerializer {
+
+    public static final String XML_FILE_PATH = "src/main/resources/xmlFile.xml";
+
     public void serializePerson(Person person) throws IOException {
         XmlMapper xmlMapper = new XmlMapper();
         String xml = xmlMapper.writeValueAsString(person);
         System.out.println(xml);
 
-        Path xmlFile = Paths.get("src/main/resources/xmlFile.xml");
+        Path xmlFile = Paths.get(XML_FILE_PATH);
         Files.createFile(xmlFile);
         Files.writeString(xmlFile, xml);
     }
 
     public Person deserializePerson() throws IOException {
-        Path xmlFile = Paths.get("src/main/resources/xmlFile.xml");
+        Path xmlFile = Paths.get(XML_FILE_PATH);
         String xmlContent = Files.readString(xmlFile);
 
         XmlMapper xmlMapper = new XmlMapper();
