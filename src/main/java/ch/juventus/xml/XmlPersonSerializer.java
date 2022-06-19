@@ -18,7 +18,6 @@ public class XmlPersonSerializer {
         System.out.println(xml);
 
         Path xmlFile = Paths.get(XML_FILE_PATH);
-        Files.createFile(xmlFile);
         Files.writeString(xmlFile, xml);
     }
 

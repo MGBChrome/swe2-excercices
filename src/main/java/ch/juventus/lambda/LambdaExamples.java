@@ -18,41 +18,6 @@ public class LambdaExamples {
         peopleExercise();
     }
 
-    private static void peopleExercise() {
-        List<Person> people = List.of(
-                new Person("Bernd", 20),
-                new Person("Fritz", 25),
-                new Person("Boris", 15),
-                new Person("Anna", 15)
-        );
-
-        boolean allOver18 = people.stream()
-                .filter(person -> !person.getName().startsWith("A"))
-                .map(Person::getAlter)
-                .allMatch(alter -> alter >= 18);
-
-        System.out.println("All are over 18: " + allOver18);
-    }
-
-    private static void numberListsExercise() {
-        List<List<Integer>> numberLists = List.of(
-                List.of(1, 2, 3),
-                List.of(2, 3, 4),
-                List.of(3, 4, 5),
-                List.of(4, 5, 6)
-        );
-
-        List<Integer> processedList = numberLists.stream()
-                .flatMap(Collection::stream)
-                .map(number -> number * 2)
-                .distinct()
-                .sorted()
-                .collect(Collectors.toList()); // toList() ab Java 16
-
-        System.out.println("processedList:");
-        System.out.println(processedList);
-    }
-
     private static void functionTypeExercise() {
         Function<Date, String> generateDateText = date -> "Jetzt ist " + date;
         String dateText = generateDateText.apply(new Date());
@@ -81,4 +46,41 @@ public class LambdaExamples {
     private static int operate(int a, int b, MathOperation mathOperation) {
         return mathOperation.operate(a, b);
     }
+
+    private static void numberListsExercise() {
+        List<List<Integer>> numberLists = List.of(
+                List.of(1, 2, 3),
+                List.of(2, 3, 4),
+                List.of(3, 4, 5),
+                List.of(4, 5, 6)
+        );
+
+        List<Integer> processedList = numberLists.stream()
+                .flatMap(Collection::stream)
+                .map(number -> number * 2)
+                .distinct()
+                .sorted()
+                .collect(Collectors.toList()); // toList() ab Java 16
+
+        System.out.println("processedList:");
+        System.out.println(processedList);
+    }
+
+    private static void peopleExercise() {
+        List<Person> people = List.of(
+                new Person("Bernd", 20),
+                new Person("Fritz", 25),
+                new Person("Boris", 15),
+                new Person("Anna", 15)
+        );
+
+        boolean allOver18 = people.stream()
+                .filter(person -> !person.getName().startsWith("A"))
+                .map(Person::getAlter)
+                .allMatch(alter -> alter >= 18);
+
+        System.out.println("All are over 18: " + allOver18);
+    }
+
+
 }
