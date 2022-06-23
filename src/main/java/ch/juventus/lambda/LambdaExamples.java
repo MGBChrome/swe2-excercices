@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class LambdaExamples {
     public static void main(String[] args) {
@@ -25,7 +24,7 @@ public class LambdaExamples {
     }
 
     private static void functionalInterfaceExercise() {
-        MathOperation addition = (a, b) -> a + b;
+        MathOperation addition = Integer::sum;
         MathOperation subtraction = (a, b) -> a - b;
         MathOperation multiplication = (a, b) -> a * b;
         MathOperation division = (a, b) -> a / b;
@@ -57,7 +56,7 @@ public class LambdaExamples {
 
         List<Integer> processedList = numberLists.stream()
                 .flatMap(Collection::stream)
-                .map(number -> number * 2)
+                .map(LambdaExamples::multiplyWith2)
                 .distinct()
                 .sorted()
                 .collect(Collectors.toList()); // toList() ab Java 16
@@ -66,11 +65,15 @@ public class LambdaExamples {
         System.out.println(processedList);
     }
 
+    private static Integer multiplyWith2(Integer number) {
+        return number * 2;
+    }
+
     private static void peopleExercise() {
         List<Person> people = List.of(
                 new Person("Bernd", 20),
                 new Person("Fritz", 25),
-                new Person("Boris", 15),
+                new Person("Boris", 27),
                 new Person("Anna", 15)
         );
 
@@ -81,6 +84,4 @@ public class LambdaExamples {
 
         System.out.println("All are over 18: " + allOver18);
     }
-
-
 }
